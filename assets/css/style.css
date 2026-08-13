@@ -687,3 +687,88 @@ footer {
     font-size: 13px;
     color: #6b7280;
 }
+
+
+/* ================= RESPONSIVIDADE (MOBILE / CELULARES) ================= */
+@media (max-width: 768px) {
+    /* Header empilhado */
+    header {
+        flex-direction: column;
+        padding: 15px 5%;
+    }
+    nav {
+        margin-top: 15px;
+        width: 100%;
+    }
+    nav ul {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+    
+    /* Slider menor e sem botões de flecha laterais */
+    .hero-slider {
+        height: 380px;
+    }
+    .slide h1 {
+        font-size: 28px;
+    }
+    .slide-content {
+        padding: 25px;
+    }
+    .slider-btn {
+        display: none; 
+    }
+    
+    /* Box de Orçamento vira coluna */
+    .orcamento-container {
+        flex-direction: column;
+        padding: 25px 20px;
+    }
+    .orcamento-form, .orcamento-logos {
+        width: 100%;
+    }
+    .orcamento-logos {
+        margin-top: 40px;
+    }
+    
+    /* Grades / Cards espremidos */
+    .features-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+    .feature-item {
+        width: 100%;
+        max-width: 100%;
+    }
+    .depoimentos-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Contato e Modal */
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    .contact-card {
+        padding: 30px 20px;
+    }
+    .modal-content {
+        padding: 25px;
+        width: 95%;
+    }
+
+    /* Rodapé centralizado */
+    footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 30px;
+    }
+    .footer-logo {
+        width: 100%;
+    }
+    .footer-info {
+        width: 100%;
+    }
+}
