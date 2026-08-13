@@ -23,6 +23,12 @@
     --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.05);
 }
 
+/* ================= TRAVA DE ARRASTE HORIZONTAL ================= */
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -343,6 +349,9 @@ nav a:hover, nav a.active {
     border-radius: 16px;
     width: 90%;
     max-width: 500px;
+    /* Limitador para mobile - Permite scroll interno */
+    max-height: 90vh;
+    overflow-y: auto;
     position: relative;
     box-shadow: var(--shadow-lg);
     transform: translateY(-20px);
@@ -362,6 +371,7 @@ nav a:hover, nav a.active {
     cursor: pointer;
     color: var(--text-muted);
     transition: color 0.2s;
+    z-index: 10;
 }
 
 .modal-close:hover {
@@ -373,6 +383,8 @@ nav a:hover, nav a.active {
     font-weight: 700;
     color: var(--text-dark);
     margin-bottom: 15px;
+    /* Evita que o texto encavale no botão de fechar (X) */
+    padding-right: 30px; 
 }
 
 .modal-desc {
@@ -691,7 +703,6 @@ footer {
 
 /* ================= RESPONSIVIDADE (MOBILE / CELULARES) ================= */
 @media (max-width: 768px) {
-    /* Header empilhado */
     header {
         flex-direction: column;
         padding: 15px 5%;
@@ -706,7 +717,6 @@ footer {
         gap: 15px;
     }
     
-    /* Slider menor e sem botões de flecha laterais */
     .hero-slider {
         height: 380px;
     }
@@ -720,7 +730,6 @@ footer {
         display: none; 
     }
     
-    /* Box de Orçamento vira coluna */
     .orcamento-container {
         flex-direction: column;
         padding: 25px 20px;
@@ -732,7 +741,6 @@ footer {
         margin-top: 40px;
     }
     
-    /* Grades / Cards espremidos */
     .features-grid {
         flex-direction: column;
         align-items: center;
@@ -745,7 +753,6 @@ footer {
         grid-template-columns: 1fr;
     }
     
-    /* Contato e Modal */
     .contact-grid {
         grid-template-columns: 1fr;
         gap: 20px;
@@ -758,7 +765,6 @@ footer {
         width: 95%;
     }
 
-    /* Rodapé centralizado */
     footer {
         flex-direction: column;
         align-items: center;

@@ -53,14 +53,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ================= GERADOR MENSAGEM WHATSAPP =================
-    const numeroWhatsApp = "5548996149815";
+    // NUMERO ATUALIZADO 
+    const numeroWhatsApp = "5548996449815";
 
     // 1. Lógica do Select na Home 
     const selectServico = document.getElementById('servico');
     const placaGroupHome = document.getElementById('placa-group-home');
     if (selectServico && placaGroupHome) {
         selectServico.addEventListener('change', function() {
-            // Oculta a placa APENAS no Primeiro Emplacamento
             if (this.value === 'Primeiro emplacamento') {
                 placaGroupHome.style.display = 'none';
                 document.getElementById('placa').value = '';
@@ -117,7 +117,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 modalDesc.innerText = serviceDescription;
                 inputPlacaModal.value = ''; 
                 
-                // Oculta a placa APENAS no Primeiro Emplacamento
                 if (serviceName.toLowerCase() === 'primeiro emplacamento') {
                     modalPlacaGroup.style.display = 'none';
                 } else {
