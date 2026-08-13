@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Despachante GSM - Home</title>
+    <link rel="icon" type="image/png" href="assets/img/favicon.png">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <a href="index.html">
+                <img src="assets/img/logo-gsm.png" alt="Despachante GSM Logo">
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="servicos.html">Serviços</a></li>
+                <li><a href="https://wa.me/5548996149815?text=Ol%C3%A1.%20Gostaria%20de%20fazer%20um%20or%C3%A7amento.%20Pode%20me%20ajudar%20por%20favor%3F" target="_blank">Orçamento</a></li>
+                <li><a href="contato.html">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero-slider">
+        <div class="slide active" style="background-image: url('assets/img/slide-parcelamento.jpg');">
+            <div class="slide-content">
+                <h1>Parcelamento de débitos em até 21x</h1>
+            </div>
+        </div>
+        <div class="slide" style="background-image: url('assets/img/slide-lojistas.jpg');">
+            <div class="slide-content">
+                <h1>Atendimento especializado para lojistas</h1>
+            </div>
+        </div>
+        <div class="slide" style="background-image: url('assets/img/slide-transferencia.jpg');">
+            <div class="slide-content">
+                <h1>Transferência de propriedade ágil e segura</h1>
+            </div>
+        </div>
+        <div class="slide" style="background-image: url('assets/img/slide-tranquilidade.jpg');">
+            <div class="slide-content">
+                <h1>Tranquilidade total com a documentação do seu veículo</h1>
+            </div>
+        </div>
+
+        <button class="slider-btn prev"><i class="fa-solid fa-arrow-left"></i></button>
+        <button class="slider-btn next"><i class="fa-solid fa-arrow-right"></i></button>
+        
+        <div class="slider-dots">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+    </section>
+
+    <section class="section" id="orcamento">
+        <div class="orcamento-container">
+            <div class="orcamento-form">
+                <h2 class="section-title" style="text-align: left;">Solicitar orçamento</h2>
+                <form id="form-orcamento-home" style="margin-top: 25px;">
+                    <div class="form-group">
+                        <label for="servico">Qual serviço você precisa?</label>
+                        <select id="servico" name="servico">
+                            <option>Selecione o serviço</option>
+                            <option>Consulta especializada</option>
+                            <option>Transferência de propriedade</option>
+                            <option>Parcelamento de débitos</option>
+                            <option>Emissão de licenciamento digital</option>
+                            <option>Regularização de modificações</option>
+                            <option>Primeiro emplacamento</option>
+                            <option>Troca de cor</option>
+                            <option>Conversão de combustível (GNV)</option>
+                            <option>Emissão de segunda via do recibo (CRV)</option>
+                            <option>Emissão de ATPV-e (recibo digital)</option>
+                            <option>Comunicação de venda</option>
+                            <option>Recurso de multas</option>
+                            <option>Baixa de veículo</option>
+                            <option>ANTT</option>
+                            <option>Outro serviço</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="placa-group-home">
+                        <label for="placa">Placa do veículo</label>
+                        <input type="text" id="placa" name="placa" placeholder="Digite a placa" maxlength="7">
+                    </div>
+                    <button type="submit" class="btn-primary" style="width: 100%; margin-top: 10px;">Solicitar Orçamento</button>
+                </form>
+            </div>
+            
+            <div class="orcamento-logos">
+                <div class="logos-grid">
+                    <img src="assets/img/bandeiras.png" alt="Bandeiras de Cartões" style="height: 85px;">
+                    <img src="assets/img/pagueveloz.png" alt="PagueVeloz" style="height: 30px;">
+                    <img src="assets/img/ambiente.png" alt="Ambiente Seguro" style="height: 55px;">
+                </div>
+            </div>
+        </div>
+
+        <div class="features-grid">
+            <a href="servicos.html" class="feature-item">
+                <div class="feature-icon"><i class="fa-solid fa-clipboard-check"></i></div>
+                <h3>Serviços Completos</h3>
+                <p>Realizamos todos os serviços e trâmites oferecidos pelo Detran/SC.</p>
+            </a>
+            <a href="servicos.html" class="feature-item">
+                <div class="feature-icon"><i class="fa-regular fa-credit-card"></i></div>
+                <h3>Facilidade no Pagamento</h3>
+                <p>Parcelamos todos os seus débitos e serviços no cartão de crédito.</p>
+            </a>
+        </div>
+
+        <!-- Imagem do Detran solta, menor e centralizada com margem exata -->
+        <div style="margin-top: 80px; text-align: center;">
+            <img src="assets/img/credenciado-detran.png" alt="Credenciado Detran SC" style="max-width: 100%; height: auto; max-height: 100px; object-fit: contain;">
+        </div>
+    </section>
+
+    <section class="section" style="background-color: var(--bg-surface); padding-bottom: 100px;">
+        <h2 class="section-title">Depoimentos</h2>
+        <p class="section-subtitle">Depoimentos dos nossos clientes e parceiros</p>
+        
+        <div class="depoimentos-grid">
+            <div class="depoimento">
+                <p>"Quero agradecer o atendimento com agilidade e comprometimento resolvendo o que eu precisava. Recomendo esse despachante."</p>
+                <span>Eliane</span>
+            </div>
+            <div class="depoimento">
+                <p>"Agilidade e responsabilidade. Super recomendo."</p>
+                <span>Maria Aparecida</span>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-logo">
+            <img src="assets/img/logo-gsm-rodape.png" alt="Despachante GSM">
+        </div>
+        <div class="footer-info">
+            <h4>Endereço:</h4>
+            <p>Rua Teodoro Rodrigues de Oliveira, 577, Sala A</p>
+            <p>Bairro Centro</p>
+            <p>Sombrio - SC</p>
+            <p>CEP 88960-000</p>
+        </div>
+        <div class="footer-info">
+            <h4>Telefone e WhatsApp:</h4>
+            <p style="margin-bottom: 15px;">(48) 99614-9815</p>
+            
+            <h4>E-mail:</h4>
+            <p>despachantegsm@gmail.com</p>
+        </div>
+        <div class="footer-info">
+            <h4>Horário de atendimento:</h4>
+            <p>08:00 às 12:00</p>
+            <p>13:30 às 18:00</p>
+            <p>Segunda a sexta</p>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 Despachante GSM. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
