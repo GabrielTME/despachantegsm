@@ -799,12 +799,17 @@ footer {
         display: block;
     }
     nav {
-        display: none;
         width: 100%;
-        margin-top: 20px;
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        margin-top: 0;
+        transition: max-height 0.4s ease, opacity 0.4s ease, margin-top 0.4s ease;
     }
     nav.active {
-        display: block;
+        max-height: 250px;
+        opacity: 1;
+        margin-top: 20px;
     }
     nav ul {
         flex-direction: column;
@@ -868,19 +873,22 @@ footer {
     }
     .footer-logo {
         width: 100%;
+        text-align: center;
     }
     .footer-info {
         width: 100%;
     }
     
     .services-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
         gap: 8px;
         padding: 20px 5%;
     }
     .service-card {
-        max-width: 100%;
+        flex: 0 0 calc((100% - 16px) / 3);
+        max-width: calc((100% - 16px) / 3);
         padding: 15px 5px;
         min-width: 0; 
     }
@@ -892,7 +900,7 @@ footer {
         border-radius: 8px;
     }
     .service-card h3 {
-        font-size: 10px;
+        font-size: 11px;
         word-wrap: break-word;
         hyphens: auto;
     }
