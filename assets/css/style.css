@@ -1,32 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
-    /* Paleta Vermelha do Despachante */
     --primary-red: #AF1B1F;
     --dark-red: #501418;
     --hover-red: #8E1519; 
-    
-    /* Cores de Fundo */
     --bg-page: #eef1f5;       
     --bg-surface: #ffffff;    
     --bg-footer: #1a1a1c; 
-    
-    /* Textos */
     --text-dark: #2d3748;     
     --text-muted: #718096;    
     --text-light: #ffffff;    
-    
-    /* Bordas e Sombras */
     --border-color: #cbd5e1;
     --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
     --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
     --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.05);
 }
 
-/* ================= TRAVA DE ARRASTE HORIZONTAL ================= */
 html, body {
     overflow-x: hidden;
     width: 100%;
+    scroll-behavior: smooth;
 }
 
 * {
@@ -52,7 +45,6 @@ ul {
     list-style: none;
 }
 
-/* ================= HEADER ================= */
 header {
     background-color: var(--bg-footer);
     backdrop-filter: blur(8px);
@@ -65,6 +57,11 @@ header {
     position: sticky;
     top: 0;
     z-index: 1000;
+    transition: box-shadow 0.3s ease;
+}
+
+header.scrolled {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
 }
 
 .logo-container {
@@ -80,6 +77,13 @@ header {
 .logo-container img {
     max-height: 42px;
     object-fit: contain;
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 26px;
+    color: var(--text-light);
+    cursor: pointer;
 }
 
 nav ul {
@@ -99,7 +103,6 @@ nav a:hover, nav a.active {
     color: var(--primary-red);
 }
 
-/* ================= SLIDER ================= */
 .hero-slider {
     position: relative;
     height: 500px;
@@ -194,7 +197,6 @@ nav a:hover, nav a.active {
     transform: scale(1.3);
 }
 
-/* ================= SECTIONS & TYPOGRAPHY ================= */
 .section {
     padding: 80px 5%;
     text-align: center;
@@ -224,7 +226,6 @@ nav a:hover, nav a.active {
     margin-bottom: 48px;
 }
 
-/* ================= BUTTONS & INPUTS ================= */
 .btn-primary {
     background-color: var(--primary-red);
     color: var(--text-light);
@@ -276,7 +277,28 @@ nav a:hover, nav a.active {
     box-shadow: 0 0 0 3px rgba(175, 27, 31, 0.1);
 }
 
-/* ================= ORÇAMENTO CONTAINER ================= */
+.error {
+    border-color: #ef4444 !important;
+    animation: shake 0.3s;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 .orcamento-container {
     display: flex;
     justify-content: space-between;
@@ -325,7 +347,6 @@ nav a:hover, nav a.active {
     object-fit: contain;
 }
 
-/* ================= MODAL DE SERVIÇOS ================= */
 .modal-overlay {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
@@ -349,7 +370,6 @@ nav a:hover, nav a.active {
     border-radius: 16px;
     width: 90%;
     max-width: 500px;
-    /* Limitador para mobile - Permite scroll interno */
     max-height: 90vh;
     overflow-y: auto;
     position: relative;
@@ -383,7 +403,6 @@ nav a:hover, nav a.active {
     font-weight: 700;
     color: var(--text-dark);
     margin-bottom: 15px;
-    /* Evita que o texto encavale no botão de fechar (X) */
     padding-right: 30px; 
 }
 
@@ -394,7 +413,6 @@ nav a:hover, nav a.active {
     line-height: 1.6;
 }
 
-/* ================= CARDS E GRIDS ================= */
 .features-grid {
     display: flex;
     justify-content: center;
@@ -448,7 +466,59 @@ nav a:hover, nav a.active {
     line-height: 1.5;
 }
 
-/* ================= DESTAQUE AMARELO (CONSULTA ESPECIALIZADA) ================= */
+.faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.faq-item {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    margin-bottom: 15px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.faq-question {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    color: var(--text-dark);
+}
+
+.faq-question h3 {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.faq-question i {
+    transition: transform 0.3s ease;
+    color: var(--primary-red);
+}
+
+.faq-answer {
+    max-height: 0;
+    padding: 0 20px;
+    opacity: 0;
+    transition: all 0.3s ease;
+    color: var(--text-muted);
+    font-size: 15px;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 500px;
+    padding: 0 20px 20px 20px;
+    opacity: 1;
+}
+
+.faq-item.active .faq-question i {
+    transform: rotate(180deg);
+}
+
 .service-card.highlight-card {
     border-color: #facc15; 
     box-shadow: 0 4px 15px rgba(250, 204, 21, 0.15);
@@ -532,7 +602,6 @@ nav a:hover, nav a.active {
     z-index: 1;
 }
 
-/* ================= SERVIÇOS PAGE ================= */
 .page-header {
     padding: 60px 5% 20px 5%;
     text-align: center;
@@ -604,7 +673,6 @@ nav a:hover, nav a.active {
     margin-bottom: 80px;
 }
 
-/* ================= CONTATO PAGE ================= */
 .contact-container {
     display: flex;
     padding: 40px 5% 80px 5%;
@@ -659,7 +727,29 @@ nav a:hover, nav a.active {
     max-width: 300px;
 }
 
-/* ================= FOOTER ================= */
+.whatsapp-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background-color: #25d366;
+    color: #ffffff;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 32px;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+}
+
 footer {
     background-color: var(--bg-footer);
     color: var(--text-light);
@@ -700,20 +790,25 @@ footer {
     color: #6b7280;
 }
 
-
-/* ================= RESPONSIVIDADE (MOBILE / CELULARES) ================= */
 @media (max-width: 768px) {
     header {
-        flex-direction: column;
+        flex-wrap: wrap;
         padding: 15px 5%;
     }
+    .menu-toggle {
+        display: block;
+    }
     nav {
-        margin-top: 15px;
+        display: none;
         width: 100%;
+        margin-top: 20px;
+    }
+    nav.active {
+        display: block;
     }
     nav ul {
-        justify-content: center;
-        flex-wrap: wrap;
+        flex-direction: column;
+        align-items: flex-start;
         gap: 15px;
     }
     
@@ -767,8 +862,8 @@ footer {
 
     footer {
         flex-direction: column;
-        align-items: center;
-        text-align: center;
+        align-items: flex-start;
+        text-align: left;
         gap: 30px;
     }
     .footer-logo {

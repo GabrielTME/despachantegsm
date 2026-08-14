@@ -1,6 +1,40 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // ================= SLIDER LOGIC =================
+    const header = document.querySelector('header');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 10) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+
+    const menuToggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('nav');
+    if (menuToggle && nav) {
+        menuToggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    faqQuestions.forEach(button => {
+        button.addEventListener('click', () => {
+            const faqItem = button.parentElement;
+            faqItem.classList.toggle('active');
+        });
+    });
+
     const slides = document.querySelectorAll('.slide');
     const dots = document.querySelectorAll('.dot');
     const prevBtn = document.querySelector('.slider-btn.prev');
@@ -40,10 +74,10 @@ document.addEventListener('DOMContentLoaded', () => {
         slideInterval = setInterval(nextSlide, 8000);
     }
 
-    // ================= FORMATAÇÃO DA PLACA (MÁSCARA XXXXXXX) =================
     const placaInputs = document.querySelectorAll('input[name="placa"]');
     placaInputs.forEach(input => {
         input.addEventListener('input', function(e) {
+            this.classList.remove('error');
             let value = this.value.replace(/[^a-zA-Z0-9]/g, '').toUpperCase();
             if (value.length > 7) {
                 value = value.substring(0, 7);
@@ -52,11 +86,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ================= GERADOR MENSAGEM WHATSAPP =================
-    // NUMERO ATUALIZADO 
+    const selects = document.querySelectorAll('select');
+    selects.forEach(select => {
+        select.addEventListener('change', function() {
+            this.classList.remove('error');
+        });
+    });
+
     const numeroWhatsApp = "5548996449815";
 
-    // 1. Lógica do Select na Home 
     const selectServico = document.getElementById('servico');
     const placaGroupHome = document.getElementById('placa-group-home');
     if (selectServico && placaGroupHome) {
@@ -64,22 +102,37 @@ document.addEventListener('DOMContentLoaded', () => {
             if (this.value === 'Primeiro emplacamento') {
                 placaGroupHome.style.display = 'none';
                 document.getElementById('placa').value = '';
+                document.getElementById('placa').classList.remove('error');
             } else {
                 placaGroupHome.style.display = 'block';
             }
         });
     }
 
-    // Lógica de Submit da Home
     const formHome = document.getElementById('form-orcamento-home');
     if (formHome) {
         formHome.addEventListener('submit', function(e) {
             e.preventDefault();
-            const servico = document.getElementById('servico').value;
-            const placa = document.getElementById('placa').value;
+            
+            const servicoEl = document.getElementById('servico');
+            const placaEl = document.getElementById('placa');
+            const servico = servicoEl.value;
+            const placa = placaEl.value;
+            let valid = true;
+
+            if (servico === 'Selecione o serviço' || !servico) {
+                servicoEl.classList.add('error');
+                valid = false;
+            }
+
+            if (placaGroupHome.style.display !== 'none' && placa.trim().length === 0) {
+                placaEl.classList.add('error');
+                valid = false;
+            }
+
+            if (!valid) return;
             
             let textoMsg = "Olá. Gostaria de fazer um orçamento.";
-            
             let temServico = (servico && servico !== "Selecione o serviço");
             let temPlaca = (placa && placa.trim().length > 0);
 
@@ -87,8 +140,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 textoMsg = `Olá. Gostaria de fazer um orçamento. ${servico}, placa ${placa}. Pode me ajudar por favor?`;
             } else if (temServico) {
                 textoMsg = `Olá. Gostaria de fazer um orçamento. ${servico}. Pode me ajudar por favor?`;
-            } else if (temPlaca) {
-                textoMsg = `Olá. Gostaria de fazer um orçamento. Placa ${placa}. Pode me ajudar por favor?`;
             }
 
             const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(textoMsg)}`;
@@ -96,7 +147,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 2. Modais da Página de Serviços
     const modal = document.getElementById('service-modal');
     if (modal) {
         const modalTitle = document.getElementById('modal-title');
@@ -107,7 +157,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const inputPlacaModal = document.getElementById('modal-placa');
         const modalPlacaGroup = document.getElementById('modal-placa-group');
         
-        // Abrir Modal
         serviceCards.forEach(card => {
             card.addEventListener('click', () => {
                 const serviceName = card.querySelector('h3').innerText.trim();
@@ -116,6 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 modalTitle.innerText = serviceName;
                 modalDesc.innerText = serviceDescription;
                 inputPlacaModal.value = ''; 
+                inputPlacaModal.classList.remove('error');
                 
                 if (serviceName.toLowerCase() === 'primeiro emplacamento') {
                     modalPlacaGroup.style.display = 'none';
@@ -127,17 +177,24 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // Fechar Modal 
         closeBtn.addEventListener('click', () => modal.classList.remove('active'));
         modal.addEventListener('click', (e) => {
             if(e.target === modal) modal.classList.remove('active');
         });
 
-        // Submeter formulário do Modal
         modalForm.addEventListener('submit', function(e) {
             e.preventDefault();
+            
             const servico = modalTitle.innerText;
             const placa = inputPlacaModal.value;
+            let valid = true;
+
+            if (modalPlacaGroup.style.display !== 'none' && placa.trim().length === 0) {
+                inputPlacaModal.classList.add('error');
+                valid = false;
+            }
+
+            if (!valid) return;
             
             let textoMsg = `Olá. Gostaria de fazer um orçamento. ${servico}`;
             if (placa && placa.trim().length > 0 && modalPlacaGroup.style.display !== 'none') {
