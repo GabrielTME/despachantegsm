@@ -86,6 +86,15 @@ header.scrolled {
     cursor: pointer;
 }
 
+.menu-toggle i {
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
+.menu-toggle.active i {
+    transform: rotate(180deg);
+}
+
 nav ul {
     display: flex;
     align-items: center;
